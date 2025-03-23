@@ -1,0 +1,10 @@
+# ninja log v5
+26	2809	7643437702781956	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	6c2966b5f3dba221
+21	2819	7643437702911601	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	2cef3a23fc81a8d4
+1	2826	7643437703001360	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	94749cee69cc2312
+39	2837	7643437703160932	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	5b165a4c1425ce45
+11	2884	7643437703629723	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	ae96800461e59338
+33	2911	7643437703907245	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	2d8e96dd8473599b
+16	3281	7643437707644718	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	9af4236b18bccd81
+7	3393	7643437708641675	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	bc960a0f8cf5bfd0
+3393	3609	7643437710965459	C:/Users/moore/God Of War - EGYPT/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/5v4b483u/obj/arm64-v8a/libgame.so	beb52d062f31f729
