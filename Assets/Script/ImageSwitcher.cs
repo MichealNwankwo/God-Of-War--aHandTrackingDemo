@@ -1,11 +1,12 @@
 using UnityEngine;
 using System.Collections;
+
 public class ImageSwitcher : MonoBehaviour
 {
     [SerializeField]
-    private GameObject[] objects; // Array of objects to cycle through
+    private GameObject[] objects;
     [SerializeField]
-    private float slideDuration = 0.5f; // Duration of the slide animation
+    private float slideDuration = 0.5f;
 
     private int currentIndex = 0;
     private bool isSliding = false;
@@ -15,26 +16,37 @@ public class ImageSwitcher : MonoBehaviour
         UpdateObjects();
     }
 
-    public void MoveRight()
+    public void SetInstantIndex(int newIndex)
     {
-        if (objects.Length == 0 || isSliding) return;
-        StartCoroutine(SlideTransition(1));
+        if (newIndex < 0 || newIndex >= objects.Length) return;
+
+        if (objects[currentIndex] != null)
+            objects[currentIndex].SetActive(false);
+
+        currentIndex = newIndex;
+
+        if (objects[currentIndex] != null)
+            objects[currentIndex].SetActive(true);
     }
 
-    public void MoveLeft()
+    public void SlideToIndex(int newIndex)
     {
-        if (objects.Length == 0 || isSliding) return;
-        StartCoroutine(SlideTransition(-1));
+        if (newIndex < 0 || newIndex >= objects.Length || isSliding || newIndex == currentIndex)
+            return;
+
+        int direction = newIndex > currentIndex ? 1 : -1;
+        StartCoroutine(SlideTransition(newIndex, direction));
     }
 
-    private IEnumerator SlideTransition(int direction)
+    private IEnumerator SlideTransition(int newIndex, int direction)
     {
         isSliding = true;
+
         GameObject currentObject = objects[currentIndex];
-        currentIndex = (currentIndex + direction + objects.Length) % objects.Length;
-        GameObject nextObject = objects[currentIndex];
+        GameObject nextObject = objects[newIndex];
 
         nextObject.SetActive(true);
+
         float elapsedTime = 0f;
         Vector3 startPos = currentObject.transform.position;
         Vector3 endPos = startPos + new Vector3(direction * 2f, 0, 0);
@@ -53,6 +65,8 @@ public class ImageSwitcher : MonoBehaviour
         currentObject.SetActive(false);
         currentObject.transform.position = startPos;
         nextObject.transform.position = startPos;
+
+        currentIndex = newIndex;
         isSliding = false;
     }
 
@@ -60,7 +74,8 @@ public class ImageSwitcher : MonoBehaviour
     {
         for (int i = 0; i < objects.Length; i++)
         {
-            objects[i].SetActive(i == currentIndex);
+            if (objects[i] != null)
+                objects[i].SetActive(i == currentIndex);
         }
     }
 }
